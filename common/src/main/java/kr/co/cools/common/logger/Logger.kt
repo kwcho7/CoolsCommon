@@ -9,22 +9,16 @@ class Logger {
         fun init(isDebug: Boolean, tag: String = "Cools"){
             if(isDebug){
                 Timber.plant(object: Timber.DebugTree(){
+                    var prefix = "[$tag] "
+                    /**
+                     * add lineNumber
+                     */
                     override fun createStackElementTag(element: StackTraceElement): String? {
-                        val exception = Throwable()
-                        if(exception.stackTrace.size > 7){
-                            val stringBuffer = StringBuffer()
-                            val stackElements = exception.stackTrace[7]
-                            stringBuffer
-                                .append("[${tag}] ")
-                                .append(stackElements.fileName)
-                                .append("(").append(stackElements.lineNumber)
-                                .append(")")
+                        return super.createStackElementTag(element).plus("(").plus(element.lineNumber).plus(")")
+                    }
 
-                            return stringBuffer.toString()
-                        }
-                        else {
-                            return super.createStackElementTag(element)
-                        }
+                    override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
+                        super.log(priority, tag, prefix.plus(message), t)
                     }
 
                 })
