@@ -1,5 +1,23 @@
+apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+
+publish {
+    def groupProjectID = 'kr.co.cools.core'
+    def artifactProjectID = 'common'
+    def publishVersionID = '0.0.1'
+
+    userOrg = 'jeffjo'
+    repoName = 'Common'
+    groupId = groupProjectID
+    artifactId = artifactProjectID
+    publishVersion = publishVersionID
+    desc = 'This is a library for the common.'
+    website = 'https://github.com/kwcho7/common'
+
+}
+
+
 
 android {
     compileSdkVersion 28
@@ -35,7 +53,7 @@ dependencies {
 
     // Logger
     implementation 'com.jakewharton.timber:timber:4.7.1'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {
     mavenCentral()
