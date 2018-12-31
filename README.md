@@ -9,7 +9,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'kr.co.cools.core:common:0.0.1'
+    implementation 'kr.co.cools.core:common:0.0.2'
 
 }
 
