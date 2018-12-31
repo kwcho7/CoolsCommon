@@ -15,6 +15,11 @@ dependencies {
 
 ```
 
+* Dependency library 
+```gradle
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+```
+
 # Logger
 
 * must be called ```Logger.init``` in Application'
