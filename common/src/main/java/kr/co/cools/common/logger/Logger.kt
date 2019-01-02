@@ -14,7 +14,20 @@ class Logger {
                      * add lineNumber
                      */
                     override fun createStackElementTag(element: StackTraceElement): String? {
-                        return super.createStackElementTag(element).plus("(").plus(element.lineNumber).plus(")")
+                        val exception = Throwable()
+                        if(exception.stackTrace.size > 7){
+                            val stringBuffer = StringBuffer()
+                            val stackElements = exception.stackTrace[7]
+                            stringBuffer
+                                .append(stackElements.fileName)
+                                .append("(").append(stackElements.lineNumber)
+                                .append(")")
+
+                            return stringBuffer.toString()
+                        }
+                        else {
+                            return super.createStackElementTag(element)
+                        }
                     }
 
                     override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
